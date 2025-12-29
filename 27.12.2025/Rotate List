@@ -1,0 +1,17 @@
+class Solution:
+    def rotateRight(self, head, k: int):
+        if not head or not head.next or k == 0:
+            return head
+        # count length
+        length, curr = 1, head
+        while curr.next:
+            curr = curr.next
+            length += 1
+        curr.next = head  # make circular
+        k %= length
+        steps = length - k
+        for _ in range(steps):
+            curr = curr.next
+        head = curr.next
+        curr.next = None
+        return head
