@@ -1,0 +1,40 @@
+class Solution {
+    TreeNode xNode = null;
+
+    public int noOfNodes(TreeNode root, int x){
+        if(root == null) return 0;
+
+    
+        if(root.val == x){
+            xNode = root;
+            return 0;
+        }
+
+      
+        if(root.left == null && root.right == null) return 1;
+
+    
+        return noOfNodes(root.left, x) + noOfNodes(root.right, x) + 1;
+    }
+
+    public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
+
+    
+        int upperNodesCount = noOfNodes(root, x);
+
+  
+        int leftNodesCount = noOfNodes(xNode.left, x);
+
+  
+        int rightNodesCount = noOfNodes(xNode.right, x);
+
+        
+        if(upperNodesCount == 0){
+            
+            if(leftNodesCount == rightNodesCount) return false;
+            else return true; 
+        }
+
+        
+    }
+}
