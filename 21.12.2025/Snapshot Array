@@ -1,0 +1,48 @@
+class SnapshotArray {
+
+
+    TreeMap<Integer, List<Integer>> snapShotMap2;
+
+
+    List<TreeMap<Integer, Integer>> snapShotList;
+
+    int snapshotId;
+    List<Integer> list;
+
+    public SnapshotArray(int length) {
+        this.snapshotId = 0;
+        this.snapShotList = new ArrayList<>(length);
+        
+        for (int i = 0; i < length; i++) {
+      
+            this.snapShotList.add(new TreeMap<>());
+    
+            this.set(i, 0);
+        }
+    }
+
+    public void set(int index, int val) {
+        var snapshotList = this.snapShotList.get(index);
+        snapshotList.put(snapshotId, val);
+        
+    }
+
+    public int snap() {
+        var originalSnapshotId = this.snapshotId;
+        snapshotId++;
+        snapshotTimeItem.put(this.snapshotId, snapshotTimeItem.lastEntry().getValue());
+        }
+        return originalSnapshotId;
+    }
+
+    public int get(int index, int snapId) {
+        var snapshotTimeItem = snapShotList.get(index);
+        return snapshotTimeItem.floorEntry(snapId).getValue();
+    }
+
+
+
+}
+
+
+ 
