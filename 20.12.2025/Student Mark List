@@ -1,0 +1,29 @@
+class Student {
+    int regNo;
+    String name;
+    int m1, m2, m3;
+
+    Student(int r, String n, int a, int b, int c) {
+        regNo = r;
+        name = n;
+        m1 = a; m2 = b; m3 = c;
+    }
+
+    void display() {
+        int total = m1 + m2 + m3;
+        double avg = total / 3.0;
+        System.out.println(regNo + " " + name + " Total=" + total + " Avg=" + avg);
+    }
+}
+
+class StudentMain {
+    public static void main(String[] args) {
+        Student[] s = new Student[2];
+
+        s[0] = new Student(101, "Anu", 80, 75, 90);
+        s[1] = new Student(102, "Ravi", 70, 85, 88);
+
+        for (Student st : s)
+            st.display();
+    }
+}
