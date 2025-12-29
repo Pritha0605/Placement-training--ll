@@ -1,0 +1,21 @@
+class Student {
+    private String name; 
+
+    
+    public String getName() {
+        return name;
+    }
+
+    
+    public void setName(String newName) {
+        this.name = newName;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student obj = new Student();
+        obj.setName("John");
+        System.out.println("Student Name: " + obj.getName()); 
+    }
+}
