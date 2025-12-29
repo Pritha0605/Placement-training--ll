@@ -1,0 +1,25 @@
+class Solution:
+    def fullJustify(self, words, maxWidth):
+        res = []
+        i = 0
+        while i < len(words):
+            length = len(words[i])
+            j = i+1
+            while j < len(words) and length + len(words[j]) + (j-i) <= maxWidth:
+                length += len(words[j])
+                j += 1
+            line = words[i]
+            spaces = maxWidth - length
+            gaps = j-i-1
+            if j == len(words) or gaps == 0:
+                for k in range(i+1, j):
+                    line += ' ' + words[k]
+                line += ' '*(maxWidth-len(line))
+            else:
+                space, extra = divmod(spaces, gaps)
+                for k in range(i+1, j):
+                    line += ' '*(space + (1 if extra>0 else 0)) + words[k]
+                    extra -= 1
+            res.append(line)
+            i = j
+        return res
