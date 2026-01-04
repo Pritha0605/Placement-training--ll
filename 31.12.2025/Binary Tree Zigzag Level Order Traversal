@@ -1,0 +1,9 @@
+class Solution:
+    def zigzagLevelOrder(self, root):
+        res, q, d = [], [root] if root else [], 1
+        while q:
+            level = [n.val for n in q]
+            res.append(level if d else level[::-1])
+            q = [c for n in q for c in (n.left, n.right) if c]
+            d ^= 1
+        return res
