@@ -1,0 +1,13 @@
+class Solution:
+    def connect(self, root):
+        cur = root
+        while cur:
+            dummy = tail = Node(0)
+            while cur:
+                for c in (cur.left, cur.right):
+                    if c:
+                        tail.next = c
+                        tail = c
+                cur = cur.next
+            cur = dummy.next
+        return root
