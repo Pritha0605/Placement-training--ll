@@ -1,0 +1,12 @@
+class TwoSum:
+    def __init__(self):
+        self.m = {}
+
+    def add(self, n):
+        self.m[n] = self.m.get(n,0)+1
+
+    def find(self, v):
+        for n in self.m:
+            if v-n in self.m and (v-n != n or self.m[n] > 1):
+                return True
+        return False
