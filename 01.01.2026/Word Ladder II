@@ -1,0 +1,17 @@
+class Solution:
+    def findLadders(self, begin, end, words):
+        from collections import defaultdict
+        words = set(words)
+        layer = {begin:[[begin]]}
+        while layer:
+            new = defaultdict(list)
+            for w in layer:
+                if w == end: return layer[w]
+                for i in range(len(w)):
+                    for c in 'abcdefghijklmnopqrstuvwxyz':
+                        nw = w[:i]+c+w[i+1:]
+                        if nw in words:
+                            new[nw] += [p+[nw] for p in layer[w]]
+            words -= set(new.keys())
+            layer = new
+        return []
