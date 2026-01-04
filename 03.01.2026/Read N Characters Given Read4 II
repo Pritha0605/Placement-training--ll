@@ -1,0 +1,18 @@
+class Solution:
+    def __init__(self):
+        self.buf4 = []
+        self.i4 = 0
+
+    def read(self, buf, n):
+        i = 0
+        while i < n:
+            if self.i4 == len(self.buf4):
+                self.buf4 = ['']*4
+                self.i4 = 0
+                cnt = read4(self.buf4)
+                if cnt == 0: break
+                self.buf4 = self.buf4[:cnt]
+            buf[i] = self.buf4[self.i4]
+            i += 1
+            self.i4 += 1
+        return i
