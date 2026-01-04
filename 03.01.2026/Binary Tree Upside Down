@@ -1,0 +1,9 @@
+class Solution:
+    def upsideDownBinaryTree(self, root):
+        if not root or not root.left:
+            return root
+        newRoot = self.upsideDownBinaryTree(root.left)
+        root.left.left = root.right
+        root.left.right = root
+        root.left = root.right = None
+        return newRoot
