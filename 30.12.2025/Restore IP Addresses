@@ -1,0 +1,14 @@
+class Solution:
+    def restoreIpAddresses(self, s):
+        res = []
+        def backtrack(i, path):
+            if len(path) == 4:
+                if i == len(s): res.append(".".join(path))
+                return
+            for l in range(1, 4):
+                if i+l <= len(s):
+                    seg = s[i:i+l]
+                    if (seg[0] != '0' or l == 1) and int(seg) <= 255:
+                        backtrack(i+l, path+[seg])
+        backtrack(0, [])
+        return res
