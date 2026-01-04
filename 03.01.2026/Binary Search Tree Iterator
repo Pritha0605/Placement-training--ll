@@ -1,0 +1,17 @@
+class BSTIterator:
+    def __init__(self, root):
+        self.s = []
+        self.pushLeft(root)
+
+    def pushLeft(self, n):
+        while n:
+            self.s.append(n)
+            n = n.left
+
+    def next(self):
+        n = self.s.pop()
+        self.pushLeft(n.right)
+        return n.val
+
+    def hasNext(self):
+        return bool(self.s)
