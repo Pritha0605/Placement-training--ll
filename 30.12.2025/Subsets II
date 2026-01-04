@@ -1,0 +1,10 @@
+class Solution:
+    def subsetsWithDup(self, nums):
+        res = [[]]
+        nums.sort()
+        for i, n in enumerate(nums):
+            start = 0 if i == 0 or nums[i] != nums[i-1] else prev
+            prev = len(res)
+            for j in range(start, len(res)):
+                res.append(res[j] + [n])
+        return res
