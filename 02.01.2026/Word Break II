@@ -1,0 +1,12 @@
+class Solution:
+    def wordBreak(self, s, wordDict):
+        from functools import lru_cache
+        @lru_cache(None)
+        def dfs(i):
+            res = []
+            for w in wordDict:
+                if s.startswith(w, i):
+                    for tail in dfs(i+len(w)):
+                        res.append(w + (" " if tail else "") + tail)
+            return res if i<len(s) else [""]
+        return dfs(0)
