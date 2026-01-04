@@ -1,0 +1,9 @@
+class Solution:
+    def sumNumbers(self, root):
+        def dfs(n, v):
+            if not n: return 0
+            v = v*10 + n.val
+            if not n.left and not n.right:
+                return v
+            return dfs(n.left, v) + dfs(n.right, v)
+        return dfs(root, 0)
