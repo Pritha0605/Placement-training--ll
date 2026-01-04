@@ -1,0 +1,11 @@
+class Solution:
+    def pathSum(self, root, target):
+        res = []
+        def dfs(n, s, path):
+            if not n: return
+            if not n.left and not n.right and s == n.val:
+                res.append(path+[n.val])
+            dfs(n.left, s-n.val, path+[n.val])
+            dfs(n.right, s-n.val, path+[n.val])
+        dfs(root, target, [])
+        return res
