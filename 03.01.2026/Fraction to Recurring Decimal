@@ -1,0 +1,19 @@
+class Solution:
+    def fractionToDecimal(self, n, d):
+        if n == 0: return "0"
+        res = "-" if n*d < 0 else ""
+        n, d = abs(n), abs(d)
+        res += str(n//d)
+        r = n % d
+        if r == 0: return res
+        res += "."
+        mp = {}
+        while r:
+            if r in mp:
+                i = mp[r]
+                return res[:i] + "(" + res[i:] + ")"
+            mp[r] = len(res)
+            r *= 10
+            res += str(r//d)
+            r %= d
+        return res
