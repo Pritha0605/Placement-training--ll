@@ -1,0 +1,13 @@
+class Solution:
+    def lengthOfLongestSubstringTwoDistinct(self, s):
+        from collections import defaultdict
+        m = defaultdict(int)
+        l = res = 0
+        for r in range(len(s)):
+            m[s[r]] += 1
+            while len(m) > 2:
+                m[s[l]] -= 1
+                if m[s[l]] == 0: del m[s[l]]
+                l += 1
+            res = max(res, r-l+1)
+        return res
