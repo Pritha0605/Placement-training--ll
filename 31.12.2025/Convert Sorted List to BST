@@ -1,0 +1,7 @@
+class Solution:
+    def sortedListToBST(self, head):
+        arr = []
+        while head:
+            arr.append(head.val)
+            head = head.next
+        return Solution().sortedArrayToBST(arr)
