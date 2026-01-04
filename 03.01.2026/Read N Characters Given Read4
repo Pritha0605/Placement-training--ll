@@ -1,0 +1,11 @@
+class Solution:
+    def read(self, buf, n):
+        i = 0
+        tmp = ['']*4
+        while i < n:
+            cnt = read4(tmp)
+            if cnt == 0: break
+            for j in range(min(cnt, n-i)):
+                buf[i] = tmp[j]
+                i += 1
+        return i
