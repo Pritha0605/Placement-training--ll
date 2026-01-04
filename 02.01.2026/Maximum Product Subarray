@@ -1,0 +1,7 @@
+class Solution:
+    def maxProduct(self, nums):
+        mx = mn = res = nums[0]
+        for n in nums[1:]:
+            mx, mn = max(n, mx*n, mn*n), min(n, mx*n, mn*n)
+            res = max(res, mx)
+        return res
