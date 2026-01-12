@@ -1,0 +1,12 @@
+def strobogrammaticInRange(low, high):
+    def build(n):
+        return findStrobogrammatic(n)
+
+    count = 0
+    for l in range(len(low), len(high)+1):
+        for num in build(l):
+            if (len(num) == len(low) and num < low) or \
+               (len(num) == len(high) and num > high):
+                continue
+            count += 1
+    return count
