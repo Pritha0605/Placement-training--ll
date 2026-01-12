@@ -1,0 +1,10 @@
+def verifyPreorder(preorder):
+    stack = []
+    low = float('-inf')
+    for x in preorder:
+        if x < low:
+            return False
+        while stack and x > stack[-1]:
+            low = stack.pop()
+        stack.append(x)
+    return True
