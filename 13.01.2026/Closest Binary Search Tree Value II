@@ -1,0 +1,10 @@
+def closestKValues(root, target, k):
+    arr = []
+    def inorder(n):
+        if not n: return
+        inorder(n.left)
+        arr.append(n.val)
+        inorder(n.right)
+    inorder(root)
+    arr.sort(key=lambda x: abs(x-target))
+    return arr[:k]
