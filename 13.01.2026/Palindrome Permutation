@@ -1,0 +1,3 @@
+def canPermutePalindrome(s):
+    from collections import Counter
+    return sum(v % 2 for v in Counter(s).values()) <= 1
