@@ -1,0 +1,10 @@
+def nthUglyNumber(n):
+    ugly = [1]
+    i2 = i3 = i5 = 0
+    for _ in range(1, n):
+        nxt = min(2*ugly[i2], 3*ugly[i3], 5*ugly[i5])
+        ugly.append(nxt)
+        if nxt == 2*ugly[i2]: i2 += 1
+        if nxt == 3*ugly[i3]: i3 += 1
+        if nxt == 5*ugly[i5]: i5 += 1
+    return ugly[-1]
