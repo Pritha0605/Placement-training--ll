@@ -1,0 +1,7 @@
+def minCostII(costs):
+    if not costs: return 0
+    n, k = len(costs), len(costs[0])
+    for i in range(1, n):
+        for j in range(k):
+            costs[i][j] += min(costs[i-1][m] for m in range(k) if m != j)
+    return min(costs[-1])
