@@ -1,0 +1,23 @@
+from collections import Counter
+def generatePalindromes(s):
+    cnt = Counter(s)
+    mid = [c for c in cnt if cnt[c] % 2]
+    if len(mid) > 1: return []
+    half = []
+    for c in cnt:
+        half += [c] * (cnt[c]//2)
+    res = []
+    def backtrack(path, used):
+        if len(path) == len(half):
+            midc = mid[0] if mid else ""
+            res.append("".join(path) + midc + "".join(reversed(path)))
+            return
+        for i in range(len(half)):
+            if used[i] or (i>0 and half[i]==half[i-1] and not used[i-1]): 
+                continue
+            used[i] = True
+            backtrack(path+[half[i]], used)
+            used[i] = False
+    half.sort()
+    backtrack([], [False]*len(half))
+    return res
