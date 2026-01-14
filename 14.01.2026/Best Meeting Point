@@ -1,0 +1,12 @@
+def minTotalDistance(grid):
+    rows = [i for i in range(len(grid)) for j in range(len(grid[0])) if grid[i][j]==1]
+    cols = [j for i in range(len(grid)) for j in range(len(grid[0])) if grid[i][j]==1]
+    rows.sort(); cols.sort()
+    def dist(arr):
+        i,j = 0, len(arr)-1
+        d = 0
+        while i<j:
+            d += arr[j] - arr[i]
+            i+=1; j-=1
+        return d
+    return dist(rows) + dist(cols)
