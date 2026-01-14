@@ -1,0 +1,12 @@
+from collections import defaultdict
+
+class ValidWordAbbr:
+    def __init__(self, dictionary):
+        self.mp = defaultdict(set)
+        for w in dictionary:
+            ab = w[0] + str(len(w)-2) + w[-1] if len(w)>2 else w
+            self.mp[ab].add(w)
+
+    def isUnique(self, word):
+        ab = word[0] + str(len(word)-2) + word[-1] if len(word)>2 else word
+        return ab not in self.mp or self.mp[ab] == {word}
