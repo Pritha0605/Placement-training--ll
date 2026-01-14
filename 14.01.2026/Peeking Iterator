@@ -1,0 +1,20 @@
+class PeekingIterator:
+    def __init__(self, iterator):
+        self.it = iterator
+        self.nextEl = None
+        self.has = False
+
+    def peek(self):
+        if not self.has:
+            self.nextEl = self.it.next()
+            self.has = True
+        return self.nextEl
+
+    def next(self):
+        if self.has:
+            self.has = False
+            return self.nextEl
+        return self.it.next()
+
+    def hasNext(self):
+        return self.has or self.it.hasNext()
