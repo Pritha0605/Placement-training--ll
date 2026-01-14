@@ -1,0 +1,18 @@
+def gameOfLife(board):
+    rows, cols = len(board), len(board[0])
+    for r in range(rows):
+        for c in range(cols):
+            live = 0
+            for dr in [-1,0,1]:
+                for dc in [-1,0,1]:
+                    if dr==0 and dc==0: continue
+                    if 0<=r+dr<rows and 0<=c+dc<cols and abs(board[r+dr][c+dc])==1:
+                        live += 1
+            if board[r][c] == 1 and (live<2 or live>3):
+                board[r][c] = -1
+            if board[r][c] == 0 and live == 3:
+                board[r][c] = 2
+    for r in range(rows):
+        for c in range(cols):
+            if board[r][c] > 0: board[r][c] = 1
+            else: board[r][c] = 0
