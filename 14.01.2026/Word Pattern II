@@ -1,0 +1,16 @@
+def wordPatternMatch(pattern, s):
+    def dfs(i, j, mp, used):
+        if i==len(pattern) and j==len(s): return True
+        if i==len(pattern) or j==len(s): return False
+        p = pattern[i]
+        for k in range(j+1, len(s)+1):
+            sub = s[j:k]
+            if p in mp:
+                if mp[p] == sub and dfs(i+1, k, mp, used): return True
+            else:
+                if sub in used: continue
+                mp[p] = sub; used.add(sub)
+                if dfs(i+1, k, mp, used): return True
+                del mp[p]; used.remove(sub)
+        return False
+    return dfs(0, 0, {}, set())
