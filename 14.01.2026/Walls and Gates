@@ -1,0 +1,16 @@
+from collections import deque
+
+def wallsAndGates(rooms):
+    INF = 2147483647
+    q = deque()
+    for r in range(len(rooms)):
+        for c in range(len(rooms[0])):
+            if rooms[r][c] == 0:
+                q.append((r,c))
+    while q:
+        r,c = q.popleft()
+        for dr,dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+            nr,nc = r+dr, c+dc
+            if 0<=nr<len(rooms) and 0<=nc<len(rooms[0]) and rooms[nr][nc]==INF:
+                rooms[nr][nc] = rooms[r][c] + 1
+                q.append((nr,nc))
