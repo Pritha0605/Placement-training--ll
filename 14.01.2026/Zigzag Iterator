@@ -1,0 +1,17 @@
+class ZigzagIterator:
+    def __init__(self, v1, v2):
+        self.data = []
+        i = 0
+        while i < len(v1) or i < len(v2):
+            if i < len(v1): self.data.append(v1[i])
+            if i < len(v2): self.data.append(v2[i])
+            i += 1
+        self.i = 0
+
+    def next(self):
+        val = self.data[self.i]
+        self.i += 1
+        return val
+
+    def hasNext(self):
+        return self.i < len(self.data)
