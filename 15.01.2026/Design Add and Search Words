@@ -1,0 +1,35 @@
+class WordDictionary {
+    class Node {
+        Node[] child = new Node[26];
+        boolean end;
+    }
+    Node root = new Node();
+
+    public void addWord(String word) {
+        Node cur = root;
+        for(char c : word.toCharArray()){
+            if(cur.child[c-'a'] == null)
+                cur.child[c-'a'] = new Node();
+            cur = cur.child[c-'a'];
+        }
+        cur.end = true;
+    }
+
+    public boolean search(String word) {
+        return dfs(word, 0, root);
+    }
+
+    boolean dfs(String w, int i, Node node){
+        if(node == null) return false;
+        if(i == w.length()) return node.end;
+
+        char c = w.charAt(i);
+        if(c == '.'){
+            for(Node n : node.child)
+                if(dfs(w, i+1, n)) return true;
+            return false;
+        } else {
+            return dfs(w, i+1, node.child[c-'a']);
+        }
+    }
+}
