@@ -1,0 +1,27 @@
+class Solution {
+    public int countNodes(TreeNode root) {
+        if(root == null) return 0;
+        int l = leftHeight(root);
+        int r = rightHeight(root);
+        if(l == r) return (1 << l) - 1;
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+
+    int leftHeight(TreeNode n){
+        int h = 0;
+        while(n != null){
+            h++;
+            n = n.left;
+        }
+        return h;
+    }
+
+    int rightHeight(TreeNode n){
+        int h = 0;
+        while(n != null){
+            h++;
+            n = n.right;
+        }
+        return h;
+    }
+}
