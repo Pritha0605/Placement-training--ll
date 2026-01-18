@@ -1,0 +1,43 @@
+class Solution {
+    public List<String> generatePalindromes(String s) {
+        Map<Character,Integer> map = new HashMap<>();
+        for(char c:s.toCharArray())
+            map.put(c, map.getOrDefault(c,0)+1);
+
+        int odd = 0;
+        String mid = "";
+        List<Character> half = new ArrayList<>();
+        for(char c:map.keySet()){
+            if(map.get(c)%2==1){
+                odd++;
+                mid = String.valueOf(c);
+            }
+            for(int i=0;i<map.get(c)/2;i++)
+                half.add(c);
+        }
+        if(odd > 1) return new ArrayList<>();
+
+        List<String> res = new ArrayList<>();
+        boolean[] used = new boolean[half.size()];
+        backtrack(half, new StringBuilder(), used, mid, res);
+        return res;
+    }
+
+    void backtrack(List<Character> half, StringBuilder sb,
+                   boolean[] used, String mid, List<String> res){
+        if(sb.length() == half.size()){
+            String first = sb.toString();
+            res.add(first + mid + new StringBuilder(first).reverse());
+            return;
+        }
+        for(int i=0;i<half.size();i++){
+            if(used[i]) continue;
+            if(i>0 && half.get(i)==half.get(i-1) && !used[i-1]) continue;
+            used[i] = true;
+            sb.append(half.get(i));
+            backtrack(half, sb, used, mid, res);
+            sb.deleteCharAt(sb.length()-1);
+            used[i] = false;
+        }
+    }
+}
